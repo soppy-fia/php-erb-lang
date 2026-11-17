@@ -1,0 +1,76 @@
+{
+  "name": "php-erb-lang",
+  "displayName": "PHP + ERB Language",
+  "description": "Provides syntax highlighting and IntelliSense for files that contain PHP, Ruby ERB and HTML code.",
+  "icon": "images/logo.png",
+  "version": "1.0.0",
+  "publisher": "soppy-fia",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soppy-fia/php-erb-lang.git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Programming Languages"],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.3.0"
+  },
+  "extensionDependencies": [
+    "shopify.ruby-lsp",
+    "bmewburn.vscode-intelephense-client"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "php-erb",
+        "aliases": ["PHP ERB", "php-erb"],
+        "extensions": [".php.erb", ".erb.php", ".rphp"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "images/icon.svg",
+          "dark": "images/icon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "php-erb",
+        "scopeName": "text.html.php-erb",
+        "path": "./syntaxes/php-erb.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.ruby": "ruby",
+          "meta.embedded.block.php": "php",
+          "source.js": "javascript",
+          "source.css": "css",
+          "text.html.basic": "html"
+        }
+      }
+    ],
+    "configurationDefaults": {
+      "files.exclude": {
+        "**/.php-erb-cache": true
+      },
+      "emmet.includeLanguages": {
+        "php-erb": "html"
+      },
+      "[php-erb]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.autoClosingTags": true,
+        "editor.linkedEditing": true,
+        "editor.defaultFormatter": "soppy-fia.php-erb-lang"
+      }
+    }
+  }
+}

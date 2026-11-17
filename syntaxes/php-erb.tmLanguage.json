@@ -1,0 +1,44 @@
+{
+  "name": "PHP ERB",
+  "scopeName": "text.html.php-erb",
+  "patterns": [
+    {
+      "name": "comment.block.erb",
+      "begin": "<%#",
+      "end": "%>"
+    },
+    {
+      "name": "meta.embedded.block.ruby",
+      "begin": "<%[=-]?",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.ruby" }
+      },
+      "end": "-?%>",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.ruby" }
+      },
+      "contentName": "source.ruby",
+      "patterns": [
+        { "include": "source.ruby" }
+      ]
+    },
+    {
+      "name": "meta.embedded.block.php",
+      "begin": "<\\?(php|=)?",
+      "beginCaptures": {
+        "0": { "name": "punctuation.section.embedded.begin.php" }
+      },
+      "end": "\\?>",
+      "endCaptures": {
+        "0": { "name": "punctuation.section.embedded.end.php" }
+      },
+      "contentName": "source.php",
+      "patterns": [
+        { "include": "source.php" }
+      ]
+    },
+    {
+      "include": "text.html.basic"
+    }
+  ]
+}
